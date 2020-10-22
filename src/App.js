@@ -1,50 +1,74 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import './App.css';
+
+const marked = require("marked");
+
+const renderer = new marked.Renderer();
+renderer.link = function(href, title, text) {
+  return `<a target="_blank" href="${href}">${text}` + '</a>';
+};
+
+marked.setOptions({
+  breaks: true
+});
 
 class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      inputValue: ""
+      markdown: initialMarkdown
     }
     this.handleChange = this.handleChange.bind(this)
   };
+  componentDidMount(){
+    const fccScript = document.createElement("script");
+    fccScript.src = "https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js";
+    fccScript.async = true;
+    document.body.appendChild(fccScript);
+  }
   handleChange(event){
     this.setState({
-      inputValue: event.target.value
+      markdown: event.target.value
     });
   };
 render() {
   return (
     <div className="container-fluid">
-    <Editor input={this.state.inputValue} handleChange={this.handleChange}></Editor>
+    <Editor input={this.state.markdown} handleChange={this.handleChange}></Editor>
     <br />
-    <Previewer input={this.state.inputValue}></Previewer>
+    <Previewer input={this.state.markdown}></Previewer>
     </div>
   )};
 }
 
-class Editor extends React.Component {
-  constructor(props){
-    super(props)
-  }
-render(){
+const Editor = props => {
   return(
-    <textarea id="editor" value={this.props.input} onChange={this.props.handleChange}></textarea>
-  )};
+    <textarea id="editor" value={props.input} onChange={props.handleChange}></textarea>
+  );
 }
 
-class Previewer extends React.Component {
-  constructor(props){
-    super(props)
-  }
-  render(){
+const Previewer = props => {
     return(
-    <div id="previewer">
-      <p>{this.props.input}</p>
-    </div>
-    )};
+      <div dangerouslySetInnerHTML={{__html: marked(props.input)}} id="preview"/>
+    );
 }
+
+const initialMarkdown = `# H1
+## H2
+[https://google.com]
+
+\`<p>Inline code</p>\`
+
+\`\`\`
+let variable = a data type
+\`\`\`
+
+1. List item
+
+> Blockquote
+
+Created in ![alt text](./logo192.png "React Logo")
+
+__I did it!__`
 
 export default App;
