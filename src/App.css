@@ -9,6 +9,11 @@ body {
   height: 100%;
 }
 
+#header {
+  font-family: "Syne Mono", monospace;
+  margin-bottom: 50px;
+}
+
 #editor {
   width: 600px;
   height: 200px;

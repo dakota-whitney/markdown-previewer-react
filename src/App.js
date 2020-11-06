@@ -34,6 +34,7 @@ class App extends React.Component {
 render() {
   return (
     <div className="container-fluid">
+      <h1 id="header">Dakota's Markdown Previewer</h1>
     <Editor input={this.state.markdown} handleChange={this.handleChange}></Editor>
     <br />
     <Previewer input={this.state.markdown}></Previewer>
@@ -69,6 +70,6 @@ let variable = a data type
 
 Created in ![alt text](./logo192.png "React Logo")
 
-__I did it!__`
+__This is bold text__`
 
 export default App;
