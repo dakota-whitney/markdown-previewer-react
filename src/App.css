@@ -15,7 +15,6 @@ body {
 }
 
 #editor {
-  width: 600px;
   height: 200px;
   border: 3px solid #cccccc;
   padding: 5px;
@@ -24,7 +23,6 @@ body {
   color: white;
   background-position: bottom right;
   background-repeat: no-repeat;
-  /*box-shadow: 0px 0px 10px;*/
 }
 
 #preview {
