@@ -35,6 +35,7 @@ render() {
   return (
     <div className="container-fluid">
       <h1 id="header">Dakota's Markdown Previewer</h1>
+      <h2 id="subheader">Developed in React.js</h2>
     <Editor input={this.state.markdown} handleChange={this.handleChange}></Editor>
     <br />
     <Previewer input={this.state.markdown}></Previewer>
@@ -55,7 +56,9 @@ const Previewer = props => {
 }
 
 const initialMarkdown = `# H1
+
 ## H2
+
 [https://google.com]
 
 \`<p>Inline code</p>\`
