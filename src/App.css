@@ -1,5 +1,5 @@
 body {
-  background-color: #004d00;
+  background-color: black;
   color: white;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,7 @@ body {
   color: white;
   background-position: bottom right;
   background-repeat: no-repeat;
+  color: green;
 }
 
 #preview {
